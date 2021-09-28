@@ -19,8 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'role',
         'password',
+        'division_id',
     ];
 
     /**
@@ -33,12 +34,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function division()
+    {
+        return $this->belongsTo(Division::class);
+    }
 }
