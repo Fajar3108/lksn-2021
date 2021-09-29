@@ -10,4 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     board.draw();
     phyton.draw();
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        phyton.move(1, 0);
+        board.draw();
+        phyton.draw();
+        requestAnimationFrame(animate);
+    }
+    animate();
 })
