@@ -5,13 +5,12 @@ class Board {
         this.board = [];
         this.canvas = canvas;
         this.ctx = ctx;
-        this.init();
     }
 
     init() {
-        for(let i = 0; i < row; i++){
+        for(let i = 0; i < this.row; i++){
             let rowTemp = [];
-            for(let j = 0; j < col; j++){
+            for(let j = 0; j < this.col; j++){
                 rowTemp.push(0);
             }
         }
@@ -19,11 +18,15 @@ class Board {
 
     draw(){
         let color = "blue";
-        for(let i = 0; i < row; i++){
-            for(let j = 0; j < col; j++){
-                if (j % 2 == 0) color = "blue"; 
-                else color = "cyan";
-                this.ctx.context.fillStyle = color;
+        for(let i = 0; i < this.row; i++){
+            for(let j = 0; j < this.col; j++){
+                this.ctx.beginPath();
+                this.ctx.fillStyle = color;
+                this.ctx.rect(j * (this.canvas.width / this.col), i * (this.canvas.height / this.row), this.canvas.width / this.col, this.canvas.height / this.row);
+                this.ctx.strokeStyle = '#303003';
+                this.ctx.stroke(); 
+                this.ctx.fill();
+                this.ctx.closePath();
             }
         }
     }
