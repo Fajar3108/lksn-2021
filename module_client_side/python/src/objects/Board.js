@@ -17,9 +17,11 @@ class Board {
     }
 
     draw(){
-        let color = "blue";
+        let color = "#001337";
         for(let i = 0; i < this.row; i++){
             for(let j = 0; j < this.col; j++){
+                if ((i % 2 !== 0 && j % 2 == 0) || (i == 0 && j % 2 !== 0) || (i % 2 == 0 && j % 2 !== 0)) color = '#001337';
+                else color = '#192a4b';
                 this.ctx.beginPath();
                 this.ctx.fillStyle = color;
                 this.ctx.rect(j * (this.canvas.width / this.col), i * (this.canvas.height / this.row), this.canvas.width / this.col, this.canvas.height / this.row);
