@@ -25,23 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
 
     document.addEventListener('keypress', (e) => {
-        switch(e.key) {
-            case "d" :
-                dx = 1;
-                dy = 0;
-                break; 
-            case "w" :
-                dx = 0;
-                dy = -1;
-                break; 
-            case "a" :
-                dx = -1;
-                dy = 0;
-                break; 
-            case "s" :
-                dx = 0;
-                dy = 1;
-                break; 
+        if (e.key == "d" && dx != -1) {
+            dx = 1;
+            dy = 0;
+        } else if (e.key == "a" && dx != 1) {
+            dx = -1;
+            dy = 0;
+        } else if (e.key == "w" && dy != 1) {
+            dx = 0;
+            dy = -1;
+        } else if (e.key == "s" && dy != -1) {
+            dx = 0;
+            dy = 1;
         }
     })
 })
