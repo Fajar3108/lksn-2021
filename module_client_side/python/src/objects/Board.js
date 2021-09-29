@@ -25,7 +25,7 @@ class Board {
                 this.ctx.beginPath();
                 this.ctx.fillStyle = color;
                 this.ctx.rect(j * (this.canvas.width / this.col), i * (this.canvas.height / this.row), this.canvas.width / this.col, this.canvas.height / this.row);
-                this.ctx.strokeStyle = '#303003';
+                this.ctx.strokeStyle = color;
                 this.ctx.stroke(); 
                 this.ctx.fill();
                 this.ctx.closePath();
