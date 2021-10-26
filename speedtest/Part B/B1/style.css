@@ -22,6 +22,7 @@ body {
 
 .toggle input {
     position: relative;
+    opacity: 0;
     width: 100%;
     height: 100%;
     z-index: 999;
@@ -31,13 +32,57 @@ body {
 .layer {
     width: 100%;
     height: 100%;
-    background-color: blue;
+    background-color: #aaa;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 0;
 }
 
-input:checked + .layer {
+.knobs {
+    background-color: #fff;
+    border-radius: 40px;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    z-index: 1;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: .5s;
+}
+
+.checkbox:checked ~ .layer {
     background-color: red;
+}
+.checkbox:checked ~ .knobs {
+    animation: knobsActive 1s;
+    left: 50%;
+}
+
+@keyframes knobsActive {
+    0% {
+        left: 0;
+    }
+    50% {
+        width: 150%;
+        height: 150%;
+        border-radius: 100px;
+        left: -10px;
+        top: 0;
+        transform: translate(0,0)
+    }
+    51% {
+        width: 0;
+        height: 0;
+        left: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    100% {
+        width: 40px;
+        height: 40px;
+        left: 50%;
+    }
 }

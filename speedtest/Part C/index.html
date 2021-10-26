@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        canvas {
+            border: 1px solid #303030;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <canvas width="460px" height="320px"></canvas>
+        <div>
+            <label for="image">Image : </label>
+            <select id="image">
+                <option value="athena.jpg" selected>athena.jpg</option>
+                <option value="mona-lisa.jpg">mona-lisa.jpg</option>
+                <option value="theKiss.jpg">theKiss.jpg</option>
+                <option value="young-pearl.jpg">young-pearl.jpg</option>
+            </select>
+            <label for="image">Filter : </label>
+            <select id="image">
+                <option value="filter">Filter</option>
+                <option value="darken">Darken</option>
+                <option value="lighten">Lighten</option>
+            </select>
+        </div>
+    </div>
+
+
+    <script src="./app.js"></script>
+    
+</body>
+</html>
