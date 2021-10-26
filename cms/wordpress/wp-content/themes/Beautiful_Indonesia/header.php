@@ -9,3 +9,13 @@
     <?php wp_head() ?>
 </head>
 <body>
+
+    <nav>
+        <div class="container">
+        <h1><?php bloginfo('title') ?></h1>
+        <?php wp_nav_menu([
+                'theme_location' => 'main_menu',
+                'container_class' => 'nav-menu',
+            ]) ?>
+        </div>
+    </nav>

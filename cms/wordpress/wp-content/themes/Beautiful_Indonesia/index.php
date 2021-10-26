@@ -19,7 +19,13 @@
 </section>
 
 <section id="best-places">
-
+    <div class="container">
+        <?php for($i = 0; $i < 4; $i++) : ?>
+        <div class="place" style="background-image: url(<?= get_template_directory_uri() . '/photos/bali.jpg' ?>);">
+            <h2>Place Name</h2>
+        </div>
+        <?php endfor; ?>
+    </div>
 </section>
 
 <?php get_footer() ?>
