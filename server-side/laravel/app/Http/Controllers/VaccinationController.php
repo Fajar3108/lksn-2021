@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consultation;
 use Illuminate\Http\Request;
 use APp\Models\Society;
 use App\Models\Vaccination;
@@ -11,21 +12,6 @@ class VaccinationController extends Controller
 {
     public function index(Request $request)
     {
-
-    }
-
-    public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'spot_id' => ['required'],
-            'date' => ['required', 'date_format:Y-m-d'],
-        ]);
-
-        if ($validator->fails()) return response()->json([
-            'message' => 'Invalid field',
-            'errors' => $validator->errors(),
-        ], 401);
-
         $societies = Society::all();
         $society = '';
         foreach ($societies as $item) {
@@ -38,6 +24,46 @@ class VaccinationController extends Controller
         if (!$society) return response()->json([
             'message' => 'Unauthorized user',
         ], 401);
+
+        $my_vaccinations = Vaccination::where('society_id', $society->id)->get();
+
+        return response()->json([
+            'vaccinations' => [
+                'first' => $my_vaccinations->first(),
+                'second' => count($my_vaccinations) < 2 ? '<VACCINATION>|null' : $my_vaccinations[1],
+            ],
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $societies = Society::all();
+        $society = '';
+        foreach ($societies as $item) {
+            if (md5($item->id_card_number) == $request->token) {
+                $society = $item;
+                break;
+            }
+        }
+        if (!$society) return response()->json([
+            'message' => 'Unauthorized user',
+        ], 401);
+
+        $validator = Validator::make($request->all(), [
+            'spot_id' => ['required'],
+            'date' => ['required', 'date_format:Y-m-d'],
+        ]);
+
+        if ($validator->fails()) return response()->json([
+            'message' => 'Invalid field',
+            'errors' => $validator->errors(),
+        ], 401);
+
+        if (!Consultation::where('society_id', $society->id)->where('status', 'accepted')->first()) {
+            return response()->json([
+                'message' => 'our consultation must be accepted by doctor before',
+            ], 401);
+        }
 
         $my_vaccinations = Vaccination::where('society_id', $society->id)->get();
 
