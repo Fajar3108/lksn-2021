@@ -9,10 +9,13 @@ class Society extends Model
 {
     use HasFactory;
 
-    protected $table = 'societies';
-
     public function regional()
     {
         return $this->belongsTo(Regional::class);
+    }
+
+    public function consultation()
+    {
+        return $this->hasOne(Consultation::class);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConsultationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,6 @@ Route::prefix('v1')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
     });
 
-    // Route::post('/consultations')
+    Route::post('/consultations', [ConsultationController::class, 'store']);
+    Route::get('/consultations', [ConsultationController::class, 'show']);
 });

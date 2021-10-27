@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Regional extends Model
+class Spot extends Model
 {
     use HasFactory;
 
-    public function spots()
+    public function vaccines()
     {
-        return $this->hasMany(Spot::class);
+        return $this->belongsToMany(Vaccine::class);
     }
 }
