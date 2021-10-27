@@ -26,8 +26,27 @@ class SpotController extends Controller
 
     public function show($spot_id, Request $request)
     {
-        $date = $request->date ?? now();
+        $societies = Society::all();
+        $society = '';
+        foreach ($societies as $item) {
+            if (md5($item->id_card_number) == $request->token) {
+                $society = $item;
+                break;
+            }
+        }
 
-        // $spot = Spot::where()
+        if (!$society) return response()->json([
+            'message' => 'Unauthorized user',
+        ], 401);
+
+        $date = $request->date ?? now()->format('Y-m-d');
+
+        $spot = Spot::find($spot_id);
+
+        return response()->json([
+            'date' => $date,
+            'spot' => $spot,
+            'vaccinations_count' => $spot->vaccinations()->where('date', $date)->get()->count(),
+        ]);
     }
 }

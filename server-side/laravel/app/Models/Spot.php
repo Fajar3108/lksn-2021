@@ -13,4 +13,9 @@ class Spot extends Model
     {
         return $this->belongsToMany(Vaccine::class);
     }
+
+    public function vaccinations()
+    {
+        return $this->hasMany(Vaccination::class);
+    }
 }
