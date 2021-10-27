@@ -1,12 +1,22 @@
 <template>
-  <AuthNavBar />
-  <router-view />
+  <NavBar />
+  <main>
+    <!-- S: Header -->
+    <header class="jumbotron">
+      <div class="container text-center">
+        <h1 class="display-4">Vaccination Platform</h1>
+      </div>
+    </header>
+    <!-- E: Header -->
+    <Login />
+  </main>
 </template>
 
 <script>
-import AuthNavBar from '@/components/AuthNavBar.vue';
+import NavBar from '@/components/NavBar.vue';
+import Login from '@/views/Login.vue';
 
 export default {
-  components: { AuthNavBar },
+  components: { NavBar, Login },
 };
 </script>

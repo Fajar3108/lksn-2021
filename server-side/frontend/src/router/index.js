@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 // Page
-import Login from '../views/Login.vue';
 import Dashboard from '../views/Dashboard.vue';
 
 // Layout
@@ -10,21 +9,15 @@ import MainLayout from '../views/layouts/MainLayout.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     component: AuthLayout,
-    children: [
-      {
-        path: '',
-        component: Login,
-      },
-    ],
   },
   {
-    path: '/dashboard',
+    path: '/',
     component: MainLayout,
     children: [
       {
-        path: '',
+        path: 'dashboard',
         component: Dashboard,
       },
     ],

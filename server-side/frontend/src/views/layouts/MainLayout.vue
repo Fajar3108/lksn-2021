@@ -1,15 +1,29 @@
 <template>
-  <MainNavbar />
-  <router-view />
+  <NavBar :name="user.name" />
+  <main>
+    <!-- S: Header -->
+    <header class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">Dashboard</h1>
+      </div>
+    </header>
+    <!-- E: Header -->
+    <router-view />
+  </main>
 </template>
 
 <script>
-import MainNavbar from '@/components/MainNavbar.vue';
+import NavBar from '@/components/NavBar.vue';
 
 export default {
-  components: { MainNavbar },
+  components: { NavBar },
   data: () => ({
     user: JSON.parse(localStorage.getItem('user')),
   }),
+  created() {
+    if (!this.user) {
+      this.$router.push('/login');
+    }
+  },
 };
 </script>

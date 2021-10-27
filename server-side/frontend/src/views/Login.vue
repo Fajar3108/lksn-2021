@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <div class="alert alert-danger" role="alert" v-if="isError">Invalid Login</div>
+        <div class="alert alert-danger" role="alert" v-if="isError">
+          ID Card Number or Password incorrect
+        </div>
 
         <form class="card card-default" @submit.prevent="login">
           <div class="card-header">
